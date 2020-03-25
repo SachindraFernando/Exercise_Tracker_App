@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 
 
+
 export default class CreateExercises extends Component{
     constructor(props){
         super(props);
@@ -23,9 +24,9 @@ export default class CreateExercises extends Component{
         }
     }
     componentDidMount(){
-        axios.post('http://localhost:5000/users')
- .then(response=>{
-     if(response.data.length>0){]
+    axios.get('http://localhost:5000/users')
+    .then(response=>{
+      if(response.data.length>0){
         this.setState({
             users:response.data.map(user=>user.username),
             username:response.data[0].username 
@@ -76,16 +77,11 @@ axios.post('http://localhost:5000/exercise/add',exercise)
 
             <div className="form-group">
             <label>Username: </label>
-            <select ref="userInput"
-            required
-            className="form-control"
-            value={this.state.username}
-            onChange={this.onChangeUsername}>
+            <select ref="userInput" required className="form-control" value={this.state.username} onChange={this.onChangeUsername}>
             {
                 this.state.users.map(function (user) {
-                   return <option 
-                   key={user}
-                   value={user}>{user}
+                   return <option key={user} value={user}>
+                   {user}
                    </option>;
                 })
             }
