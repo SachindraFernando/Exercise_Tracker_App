@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let Exercise = require('../models/exercise.model');
+const mongoose = require('mongoose');
 
 router.route('/').get((req,res)=>{
     Exercise.find()
@@ -19,6 +20,7 @@ router.route('/add').post((req,res)=>{
        duration,
        date,
    });
+   
 
    newExercise.save()
    .then(()=>res.json('Exercise added'))
